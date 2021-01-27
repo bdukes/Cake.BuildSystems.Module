@@ -2,16 +2,16 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Cake.Common.Build.TFBuild;
-using Cake.Common.Build.TFBuild.Data;
+using Cake.Common.Build.AzurePipelines;
+using Cake.Common.Build.AzurePipelines.Data;
 
-namespace Cake.TFBuild.Module
+namespace Cake.AzurePipelines.Module
 {
     public static class Extensions
     {
-        public static void UpdateProgress(this ITFBuildProvider provider, Guid parent, int progress)
+        public static void UpdateProgress(this IAzurePipelinesProvider provider, Guid parent, int progress)
         {
-            provider.Commands.UpdateRecord(parent, new TFBuildRecordData {Progress = progress, Status = TFBuildTaskStatus.InProgress});
+            provider.Commands.UpdateRecord(parent, new AzurePipelinesRecordData {Progress = progress, Status = AzurePipelinesTaskStatus.InProgress});
         }
 
         internal static bool IsRunningOnPipelines(this Common.Build.BuildSystem b) => b.IsRunningOnAzurePipelines || b.IsRunningOnAzurePipelinesHosted;

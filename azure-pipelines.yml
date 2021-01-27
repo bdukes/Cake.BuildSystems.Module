@@ -3,23 +3,23 @@ trigger:
   - develop
 
 variables:
-  buildConfiguration: 'Release'
-  cakeVersion: 0.34.1
-  sdkVersion: '2.2.300'
+  buildConfiguration: "Release"
+  cakeVersion: "1.0.0-rc0002"
+  sdkVersion: "2.2.300"
   target: NuGet
 
 pool:
-  vmImage: 'windows-2019'
+  vmImage: "windows-2019"
 steps:
   - task: UseDotNet@2
-    displayName: 'Use .NET Core SDK'
+    displayName: "Use .NET Core SDK"
     inputs:
       packageType: sdk
       version: $(sdkVersion)
       installationPath: $(Agent.ToolsDirectory)/dotnet
   - task: NuGetToolInstaller@1
     inputs:
-      versionSpec: '>=5.x'
+      versionSpec: ">=5.x"
   - task: DotNetCoreCLI@2
     displayName: Install Cake tool
     inputs:
